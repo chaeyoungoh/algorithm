@@ -1,8 +1,6 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
-import java.util.StringTokenizer;
 
 public class Main {
 
@@ -16,20 +14,19 @@ public class Main {
 		sb = new StringBuilder();
 		map = new int[N][N];
 
-		for(int i=0;i<N;i++) {
+		for(int i=0; i<N; i++) {
 			String str = br.readLine();
-			for(int j=0;j<N;j++) 
-				map[i][j] = Character.getNumericValue(str.charAt(j));
+			for(int j=0; j<N; j++) 
+				map[i][j] = str.charAt(j) - '0';
 		}
-        
+			
 		dfs(0, 0, N);
 		System.out.println(sb.toString());
 	}
 
 	private static void dfs(int r, int c, int size) {
-
-		int zero = 0, one = 0, sum = 0;
-		
+    	int zero = 0, one = 0, sum = 0;	
+        
 		for(int i = r; i < r + size; i++) {
 			for(int j = c; j < c + size; j++) {
 				sum += map[i][j];
@@ -49,7 +46,7 @@ public class Main {
 			dfs(r + half, c + half, half);
 			sb.append(")");
 		}
-			
+	
 	}
 
 }
