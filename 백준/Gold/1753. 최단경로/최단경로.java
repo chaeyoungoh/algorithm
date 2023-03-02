@@ -27,12 +27,10 @@ public class Main {
 		PriorityQueue<Edge> pq = new PriorityQueue<>();
 		final int INF = Integer.MAX_VALUE;
 		dis = new int[V+1];
-		visited = new boolean[V+1];
-		
+        
 		Arrays.fill(dis, INF);
 		
 		dis[K] = 0;
-		
 		
 		pq.add(new Edge(K, 0));
 		while(!pq.isEmpty()) {
@@ -56,7 +54,6 @@ public class Main {
 	
 	static int V, E, K;
 	static int[] dis;
-	static boolean[] visited;
 	static ArrayList<ArrayList<Edge>> graph = new ArrayList<>();
 	static StringBuilder sb = new StringBuilder();
 	
