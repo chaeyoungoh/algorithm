@@ -19,6 +19,13 @@ public class Main {
 			}
 		}
 		
+		int[][] sumArr = new int[N+1][M+1];
+		for(int i=1; i<=N; i++) {
+			for(int j=1; j<=M; j++) {
+				sumArr[i][j] = arr[i][j] + sumArr[i][j-1];
+			}
+		}
+		
 		int K = Integer.parseInt(br.readLine());
 		
 		int i, j, x, y;
@@ -30,10 +37,8 @@ public class Main {
 			y = Integer.parseInt(st.nextToken());
 
 			int sum = 0; 
-			for(int r=0; r<=(x-i); r++) {
-				for(int c=0; c<=(y-j); c++) {
-					sum += arr[i+r][j+c];
-				}
+			for(int r=i; r<=x; r++) {
+				sum += sumArr[r][y] - sumArr[r][j-1];
 			}
 			
 			sb.append(sum).append('\n');
