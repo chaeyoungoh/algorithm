@@ -5,9 +5,9 @@ class Solution {
         StringBuilder sb = new StringBuilder();
 		ArrayList<Integer> list = new ArrayList<>();
         
-        StringTokenizer st = new StringTokenizer(s, " ");
-		while(st.hasMoreTokens()) {
-			list.add(Integer.parseInt(st.nextToken()));
+       String[] tmp = s.split(" ");
+		for(String str : tmp) {
+			list.add(Integer.parseInt(str));
 		}
 		
 		Collections.sort(list);
