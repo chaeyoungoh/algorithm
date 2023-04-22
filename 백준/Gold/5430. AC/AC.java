@@ -1,71 +1,60 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.Deque;
+import java.util.LinkedList;
 
 public class Main {
 
 	static StringBuilder sb = new StringBuilder();
 
-	private static void ac(List<String> nums, String s) {
+	private static void ac(Deque<String> que, String s) {
 		boolean front = true;
-		boolean flag = false;
 		
 		for(char c : s.toCharArray()) {
-//			R인 경우
 			if(c == 'R') {
-				if(front) 
-					front = false;
-				else
-					front = true;
+//				R : 방향 반대
+				front = !front;
+				continue;
 			} else {
-				
-//			D인 경우
-				if(nums.size() == 0) {
-					flag = true;
-					break;
+//				D : 삭제
+				if(que.isEmpty()) {
+					sb.append("error").append('\n');
+					return;
 				}
-				
 				if(front) {
-//					앞에서 삭제
-					nums.remove(0);
+					que.pollFirst();
 				} else {
-//					뒤에서 삭제
-					nums.remove(nums.size()-1);
+					que.pollLast();
 				}
- 			}
+			}
 		}
+//		출력
+		printQue(que, front);
 		
-		if(flag) {
-			sb.append("error");
-		} else {
-			sb.append('[');
-			
-			if(nums.size() > 0) {			
-				if(front) {
-//				앞부터 출력
-					for(int i=0; i<nums.size()-1; i++) {			
-						sb.append(nums.get(i)).append(',');
-					}
-					sb.append(nums.get(nums.size()-1));				
-				} else {
-//				뒤부터 출력
-					for(int i=nums.size()-1; i>0; i--) {			
-						sb.append(nums.get(i)).append(',');
-					}
-					sb.append(nums.get(0));	
-				}
-			} 
-				
-			sb.append(']');				
-		}
-
-		sb.append('\n');
 	}
 
-	
+	private static void printQue(Deque<String> que, boolean front) {
+		sb.append('[');
+		if(que.size() > 0) {
+			
+			if(front) {
+				sb.append(que.pollFirst());
+			} else {
+				sb.append(que.pollLast());				
+			}
+			
+			while(que.size() > 0) {				
+				if(front) {
+					sb.append(',').append(que.pollFirst());
+				} else {
+					sb.append(',').append(que.pollLast());				
+				}
+			}
+		}
+		sb.append(']').append('\n');		
+	}
+
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int T = Integer.parseInt(br.readLine());
@@ -78,12 +67,13 @@ public class Main {
 			ARR = ARR.replace("[", "").replace("]", "");
 			String[] tmp = ARR.split(",");
 			
-			List<String> nums = new ArrayList<String>();
+			Deque<String> que = new LinkedList<>();
 			if(N > 0) {
-				for(String s : tmp)
-					nums.add(s);
+				for(String s : tmp) 
+					que.offer(s);
 			}
-			ac(nums, S);
+			
+			ac(que,S);
 		}
 		
 		System.out.println(sb.toString());
