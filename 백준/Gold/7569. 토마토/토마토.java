@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayDeque;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
@@ -24,7 +25,7 @@ public class Main {
 		int H = Integer.parseInt(st.nextToken());
 		
 		byte[][][] map = new byte[H][N][M];
-		Queue<Point> que = new LinkedList<>();
+		Queue<Point> que = new ArrayDeque<>();
 		
 		int unripe = 0;
 		for(int i=0; i<H; i++) {
