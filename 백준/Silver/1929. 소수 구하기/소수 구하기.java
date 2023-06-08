@@ -29,14 +29,12 @@ public class Main {
 	private static void isPrime() {
 		justNums[0] = justNums[1] = true;
 		
-		for(int i=2; i<=E; i++) {
+		for(int i=2; i<=Math.sqrt(E); i++) {
 			if(justNums[i])	continue;
-			int ni = i * 2;
-			while(ni <= E) {
-				justNums[ni] = true;
-				ni += i;
-			}
-		}		
+			for(int j=i*2; j<=E; j+=i)
+				justNums[j] = true;
+		}
+			
 	}
 
 }
