@@ -31,7 +31,7 @@ public class Main {
 		
 		for(int i=2; i<=Math.sqrt(E); i++) {
 			if(justNums[i])	continue;
-			for(int j=i*2; j<=E; j+=i)
+			for(int j=i*i; j<=E; j+=i)
 				justNums[j] = true;
 		}
 			
