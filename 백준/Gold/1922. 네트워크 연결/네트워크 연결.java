@@ -58,7 +58,6 @@ public class Main {
             result += cost;
 
             for(Node nx : list[to]) {
-                if(visited[nx.to])  continue;
                 pq.offer(nx);
             }
         }
